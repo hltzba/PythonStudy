@@ -104,6 +104,34 @@ def SubstitudeTest():
     subtext=nameRegex.sub(r'\1****',origintext)
     print(subtext)
 
+def UpperAndLowerCase():
+    while True:
+        print('enter test string,exit() to exit program:')
+        content=input()
+        if content=='exit()':
+            break
+        regex=re.compile(r'([a-z]+)([A-Z]+)')
+        if regex.search(content)==None:
+            print('不匹配')
+            continue
+        else:
+            print('匹配正确')
+            break
+
+def PasswordTest():
+    while True:
+        print('enter test string,exit() to exit program:')
+        content=input()
+        if content=='exit()':
+            break
+        regex=re.compile(r'^(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*).{3,}$')
+        #regex=re.compile(r'^(?=[0-9]+)(?=[A-Z]+)(?=[a-z]+).{3,}$')
+        if regex.search(content)==None:
+            print('不匹配')
+            continue
+        else:
+            print('匹配正确')
+            break
 #isPhoneNumber()
 #pipeOperator()
 #prefixMatch()
@@ -114,4 +142,6 @@ def SubstitudeTest():
 #allTextNonGreedyMatch()
 #dotAllMatch()
 #IgnoreCaseMatch()
-SubstitudeTest()
+#SubstitudeTest()
+#UpperAndLowerCase()
+PasswordTest()
