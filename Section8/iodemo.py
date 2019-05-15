@@ -1,7 +1,7 @@
 # encoding:utf-8
 #! python3
 # iodemo.py 
-import os
+import os,shelve
 def workDir():
     print(os.getcwd())
     newpath=os.path.join('D:\\','python','PythonStudy')
@@ -47,10 +47,36 @@ def dirIsValid():
     else:
         print(filepath+"  不存在")
 
+def ReadFile():
+    file=open('D:\\Hello.txt','r')
+    content=file.read()
+    print(content)
+    file=open('D:\\Hello.txt','r')
+    contentlines=file.readlines()
+    print(contentlines)
+    
+def WriteFile():
+    file=open('D:\\hello.txt','a')
+    file.write('hello world\n')
+    file.write('hello world2\n')
+
+def shelveTest():
+    file=shelve.open('D:\\shelvetest.dat')
+    config={'ConnectionString':'sdada','ProviderName':'NativeSqlClient'}
+    file['config']=config
+    file.close()
+    reader=shelve.open('D:\\shelvetest.dat')
+    print(reader['config'])
+    print(list(reader.keys()))
+    print(list(reader.values()))
+    
 
 #workDir()
 #makedir()
 #makedirWithAllPath()
 #absPath()
 #viewDirDetails()
-dirIsValid()
+#dirIsValid()
+#ReadFile()
+#WriteFile()
+shelveTest()
