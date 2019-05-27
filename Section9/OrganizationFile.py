@@ -41,6 +41,24 @@ def viewZipFileInfo():
     print('Compressed file is %sx smaller!'%(round(filesize/compresssize,2)))
     exampleZip.close()
 
+def extraZipFile():
+    exampleZip=zipfile.ZipFile('C:\\ILSpy.zip')
+    exampleZip.extractall('C:\\ILSpy_Temp\\')
+    exampleZip.close()
+    print('解压完成')
+
+def createZipFile():
+    exampleZip=zipfile.ZipFile('C:\\ILSpy_py.zip','w',zipfile.ZIP_DEFLATED)# w为创建ZIP文件，和写文件一样会覆盖。如果是向压缩包添加文件则用a替换
+    #exampleZip.write('C:\\ILSpy',compress_type=zipfile.ZIP_DEFLATED)
+    dirpath='C:\\ILSpy'
+    for path,dirnames,filenames in os.walk(dirpath):
+        # 去掉目标跟路径，只对目标文件夹下边的文件及文件夹进行压缩
+        fpath = path.replace(dirpath,'')
+        for filename in filenames:
+            exampleZip.write(os.path.join(path,filename),os.path.join(fpath,filename))
+    exampleZip.close()   
+    print('压缩完成')
+
 #copyFile()
 #copyDir()
 #moveFile()
@@ -48,4 +66,6 @@ def viewZipFileInfo():
 #DelEmptyDir()
 #DelDir()
 #dirWalk()
-viewZipFileInfo()
+#viewZipFileInfo()
+#extraZipFile()
+createZipFile()
