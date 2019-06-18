@@ -13,8 +13,8 @@ def readbaseinfo():
     print('Sheet1 highest row:%s,highest cloumn:%s.'%(sheet1.max_row,sheet1.max_column))
 
 def indexParse():
-    print(openpyxl.utils.get_column_letter(28))
-    print(openpyxl.utils.column_index_from_string('AB'))
+    print(openpyxl.utils.get_column_letter(1))
+    print(openpyxl.utils.column_index_from_string('A'))
 
 def sliceData():
     wb=openpyxl.load_workbook('E:\\青洲大桥交通量统计报表(对比).xlsx')
@@ -51,15 +51,30 @@ def cellFontStyleDemo():
     italic24Font=Font(size=24,italic=True)
     #sheet.column_dimensions['A'].font=Font(size=24,italic=True)
     col=sheet.column_dimensions['A']
-    col.font=italic24Font
-    #sheet['A1'].font=italic24Font
+    col.width=85
+    sheet['A1'].font=italic24Font
+    sheet.merge_cells('A1:C1')
     sheet['A1']='Hello world!'
-    wb.save('styles.xlsx')
     
+    wb.save('styles.xlsx')
+
+def chartsDemo():
+    wb=openpyxl.Workbook()
+    sheet=wb['Sheet']
+    for i in range(1,11):
+        sheet['A'+str(i)]=i
+    refObj=openpyxl.chart.Reference(sheet,min_row=1,min_col=1,max_row=10,max_col=1)
+    seriesObj=openpyxl.chart.Series(refObj,title='First Series')
+    chartObj=openpyxl.chart.BarChart()
+    chartObj.append(seriesObj)
+    sheet.add_chart(chartObj,'B1')
+    wb.save('chartdemo.xlsx')
+
 
 #readbaseinfo()
-#indexParse()
+indexParse()
 #sliceData()
 #createWorkbook()
 #createSheetByFuncParam()
-cellFontStyleDemo()
+#cellFontStyleDemo()
+#chartsDemo()
