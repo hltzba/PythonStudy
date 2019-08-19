@@ -18,7 +18,17 @@ def cropImage():
     starIm=Image.open('D:\\4.png')
     newim=starIm.crop((13,7,96,102))
     newim.save('D:\\newstar.png')
+
+def pastedImg():
+    jellyfish=Image.open('C:\\Users\\Public\\Pictures\\Sample Pictures\\Jellyfish.jpg')
+    originImg=jellyfish.copy()
+    star=Image.open('D:\\newstar.png')
+    originImg.paste(star,(0,0))
+    originImg.paste(star,(400,500))
+    originImg.save('D:\\jellyfish.jpg')
+
 #getColorValue()
 #openImage()
 #createNewImage()
-cropImage()
+#cropImage()
+pastedImg()
