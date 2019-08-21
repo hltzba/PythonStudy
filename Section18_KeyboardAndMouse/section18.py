@@ -28,8 +28,19 @@ def getCursePosition():
     except KeyboardInterrupt:
         print('\nDone.')
 
+def mouseClick():
+    pyautogui.click(24,779)
+    pyautogui.click(136,203)
+
+def runBrowser():
+    pyautogui.moveTo(1274,780)
+    pyautogui.click()
+    pyautogui.moveTo(34,357)
+    pyautogui.click(clicks=2)   
 
 #getScreenSize()
 #curseMoveTO()
 #curseMoveRelation()
-getCursePosition()
+#getCursePosition()
+#mouseClick()
+runBrowser()
